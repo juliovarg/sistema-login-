@@ -1,57 +1,60 @@
-# Sistema de Login Seguro — Backend + Frontend
+# Sistema de Login Seguro — Entrega Atividade Prática
 
-Projeto full-stack com backend em Go (Gin) e frontend em React + Material UI, com autenticação via JWT, controle de acesso por papéis (roles) e banco de dados PostgreSQL (Supabase ou local).
+Este repositório é destinado à entrega da Atividade Prática "Sistema de Login Seguro". O projeto é um **clone da versão atual do PFC [Aroma Sense](https://github.com/leoferamos/aroma-sense)**, com ajustes para evidenciar os requisitos de autenticação, autorização e segurança.
 
----
+## Visão Geral
 
-## 🏗 Arquitetura
-
-- **Backend:** Go (Golang) + Gin, JWT, bcrypt para hash de senha, middleware para autorização.
-- **Frontend:** React + Material UI, React Router, Context API para estado de autenticação.
-- **Banco:** PostgreSQL (pode usar Supabase ou instância local).
-- **Objetivo:** permitir registro, login, proteção de rotas conforme papéis (por ex. “admin” e “cliente”).
+O sistema implementa um backend seguro em **Go (Golang)** utilizando o framework **Gin**, JWT para autenticação, bcrypt para hash de senhas, e controle de acesso por papéis (roles). O frontend é desenvolvido em **React** com Material UI, apresentando telas separadas para cada perfil de usuário (admin e cliente).
 
 ---
 
-## 📋 Requisitos
+## Funcionalidades Atendidas
 
-- Go ≥ 1.21  
-- Node.js ≥ 18 + npm / yarn / pnpm  
-- PostgreSQL (local) ou conta no Supabase  
-- Git  
-
----
-
-## 🗄 Configuração do Banco (Supabase / Postgres local)
-
-### Usando Supabase
-
-1. Crie um projeto no Supabase.  
-2. Copie a connection string (PostgreSQL) do Supabase.  
-3. Use essa string nas variáveis de ambiente do backend.  
-4. Rode as migrações para criar as tabelas necessárias.
-
-### Usando Postgres local
-
-1. Suba um servidor PostgreSQL local (por exemplo via Docker ou serviço local).  
-2. Crie um banco, usuário e senha.  
-3. Aponte a string de conexão nas variáveis de ambiente.  
-4. Execute as migrações para criar as tabelas.
+- **Cadastro, login e logout de usuários** com senha criptografada (bcrypt)
+- **Autenticação JWT**: geração e validação de tokens seguros
+- **Controle de acesso por roles**: rotas protegidas para admin e cliente
+- **Validação de dados** no backend
+- **Frontend desacoplado**: React com telas distintas para cada papel
+- **Integração com banco de dados** Supabase/PostgreSQL
 
 ---
 
-## ⚙ Variáveis de Ambiente
+## Tecnologias Utilizadas
 
-### Backend (arquivo `.env` no diretório backend)
+### Backend
+- **Go (Golang)**
+- **Gin** (framework web)
+- **JWT** (github.com/golang-jwt/jwt/v4)
+- **bcrypt** (golang.org/x/crypto/bcrypt)
+- **Supabase/PostgreSQL**
+- **CORS Middleware**
+- **Arquitetura modular**: separation of concerns (handlers, services, repository, dto, model, middleware)
 
-```env
-DATABASE_URL=postgres://usuario:senha@host:5432/nome_db?sslmode=disable
+### Frontend
+- **React**
+- **Material UI** 
+- **React Router**
+- **Context API** para autenticação
+- **Telas separadas** para admin e cliente
 
-JWT_SECRET=seu_seguro_segredo
-JWT_EXPIRES_IN=24h
+---
 
-CORS_ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000
-CORS_ALLOWED_METHODS=GET,POST,PUT,DELETE,OPTIONS
-CORS_ALLOWED_HEADERS=Authorization,Content-Type
+## Estrutura do Projeto
 
-PORT=8080
+```
+├── backend/
+│   ├── cmd/api/main.go         # Entry point do servidor
+│   ├── internal/
+│   │   ├── auth/               # JWT, middleware, hash de senha
+│   │   ├── handler/            # Handlers HTTP
+│   │   ├── service/            # Lógica de negócio
+│   │   ├── repository/         # Acesso ao banco
+│   │   ├── dto/                # Data Transfer Objects
+│   │   └── ...
+│   ├── migrations/             # Scripts SQL
+│   └── ...
+├── frontend/
+│   ├── src/pages/              # Telas React (Login, Register, Admin, Cliente, Home)
+│   └── ...
+└── ...
+```
