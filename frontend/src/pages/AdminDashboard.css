@@ -1,0 +1,11 @@
+.dashboard-container { max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
+.logout-btn { float: right; background: #b97a56; color: #fff; border: none; padding: 8px 18px; border-radius: 4px; font-weight: bold; margin-bottom: 10px; }
+.product-form { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.product-form input, .product-form button { flex: 1 1 180px; padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+.product-form button { background: #b97a56; color: #fff; border: none; cursor: pointer; font-weight: bold; }
+.product-form button:hover { background: #a05d36; }
+.product-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+.product-table th, .product-table td { border: 1px solid #eee; padding: 8px; text-align: center; }
+.product-table th { background: #f7f7f7; }
+.success-msg { color: #2e7d32; margin-top: 10px; }
+.error-msg { color: #d00; margin-top: 10px; }
